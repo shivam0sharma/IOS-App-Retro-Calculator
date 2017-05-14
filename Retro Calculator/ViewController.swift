@@ -36,7 +36,6 @@ class ViewController: UIViewController {
         let url = Bundle.main.url(forResource: "btn", withExtension: "wav")!
         do {
             buttonSound = try AVAudioPlayer(contentsOf: url)
-            guard let buttonSound = buttonSound else { return }
             
             buttonSound.prepareToPlay()
         } catch let error {
@@ -69,6 +68,15 @@ class ViewController: UIViewController {
     
     @IBAction func onEqualsPressed(_ sender: UIButton) {
         processOperation(op: currentOperation)
+    }
+    
+    @IBAction func onClearPressed(_ sender: UIButton) {
+        runningNumber = ""
+        leftValStr = ""
+        rightValStr = ""
+        result = ""
+        currentOperation = Operation.Empty
+        outpulLabel.text = "0"
     }
     
     func processOperation(op: Operation) {
